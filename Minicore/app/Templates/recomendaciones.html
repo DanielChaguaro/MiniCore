@@ -1,0 +1,33 @@
+<h1>MiniCore</h1>
+
+<form method="POST">
+    <label for="fecha_inicial">Fecha Inicial</label>
+    <input type="date" name="fecha_inicial" required>
+    
+    <label for="fecha_final">Fecha Final</label>
+    <input type="date" name="fecha_final" required>
+
+    <button type="submit">Filtrar</button>
+</form>
+
+{% if resultados %}
+    <h3>Resultados:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Total Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+            <tr>
+                <td>{{ resultado.departamento }}</td>
+                <td>{{ resultado.total_monto }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% elif fecha_inicial and fecha_final %}
+    <p>No se encontraron resultados en el rango de fechas seleccionado.</p>
+{% endif %}
